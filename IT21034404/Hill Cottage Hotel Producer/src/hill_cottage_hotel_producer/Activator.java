@@ -2,21 +2,22 @@ package hill_cottage_hotel_producer;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.ServiceRegistration;
 
 public class Activator implements BundleActivator {
 
-	private static BundleContext context;
+	ServiceRegistration serviceRegistration;
 
-	static BundleContext getContext() {
-		return context;
+	public void start(BundleContext context) throws Exception {
+		System.out.println("Hill Cottage Hotel Producer started!!!!!!!!");
+		HillCottageHotelService hillCottageHotel = new HillCottageHotelServiceImp();
+		
+		serviceRegistration = context.registerService(HillCottageHotelService.class.getName(), hillCottageHotel, null);
+		
 	}
 
-	public void start(BundleContext bundleContext) throws Exception {
-		Activator.context = bundleContext;
-	}
-
-	public void stop(BundleContext bundleContext) throws Exception {
-		Activator.context = null;
+	public void stop(BundleContext context) throws Exception {
+		System.out.println("Hill Cottage Hotel Producer stoped!!!!!!!!");
 	}
 
 }
