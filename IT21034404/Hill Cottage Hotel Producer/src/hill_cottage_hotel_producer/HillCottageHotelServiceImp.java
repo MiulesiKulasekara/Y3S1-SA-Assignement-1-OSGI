@@ -17,15 +17,13 @@ public class HillCottageHotelServiceImp implements HillCottageHotelService{
 		
 		System.out.println("======================= Hill Cottage Hotel Bill =======================");
 		
-		System.out.format("%-18s %10s %10s %10s","Room Type","Number of Rooms","Number of days of stay");
-		System.out.println();
-		System.out.format("%-18s %10s %10s %10s","Room Type","Number of Rooms","Number of days of stay","Amount");
+		System.out.format("%-18s %10s %25s %10s","Room Type","Number of Rooms","Number of days of stay","Amount");
 		System.out.println();
 		System.out.println("==========================================================================");
 		
 		for(HillCottageBill bil : obj) {
 			double amount = calcTotalAmount(bil.getRoomAmount(),bil.getNumberOfRooms(),bil.getNumberOfDays());
-			System.out.format("%-18s %10s %10s %10s",bil.getRoomType(),bil.getNumberOfRooms(),bil.getNumberOfDays(),amount);
+			System.out.format("%-18s %10s %25s %10s",bil.getRoomType(),bil.getNumberOfRooms(),bil.getNumberOfDays(),amount);
 			System.out.println();
 			
 			totalAmount += amount; 
