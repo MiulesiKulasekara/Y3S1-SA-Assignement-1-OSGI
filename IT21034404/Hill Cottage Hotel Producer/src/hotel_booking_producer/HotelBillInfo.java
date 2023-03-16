@@ -1,6 +1,6 @@
 package hotel_booking_producer;
 
-public class HillCottageBill {
+public class HotelBillInfo {
 	
 	private String customerName;
 	private String phoneNumber;
@@ -10,7 +10,7 @@ public class HillCottageBill {
 	private int numberOfDays;
 	private double roomPrice;
 	
-	public HillCottageBill(String customerName, String phoneNumber, String hotel, int roomTypeNumber, int numberOfRooms,
+	public HotelBillInfo(String customerName, String phoneNumber, String hotel, int roomTypeNumber, int numberOfRooms,
 			int numberOfDays,double roomPrice) {
 		this.customerName = customerName;
 		this.phoneNumber = phoneNumber;

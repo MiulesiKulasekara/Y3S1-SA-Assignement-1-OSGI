@@ -8,8 +8,8 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 
 import hotel_booking_producer.CustomerProfile;
-import hotel_booking_producer.HillCottageBill;
-import hotel_booking_producer.HillCottageHotelService;
+import hotel_booking_producer.HotelBillInfo;
+import hotel_booking_producer.HotelBillingService;
 import hotel_booking_producer.HotelProfile;
 
 public class Activator implements BundleActivator {
@@ -29,8 +29,8 @@ public class Activator implements BundleActivator {
 		
 		System.out.println("Consumer Started!!!!!!!!!");
 		
-		reference = context.getServiceReference(HillCottageHotelService.class.getName());
-		HillCottageHotelService hCService = (HillCottageHotelService)context.getService(reference);
+		reference = context.getServiceReference(HotelBillingService.class.getName());
+		HotelBillingService hCService = (HotelBillingService)context.getService(reference);
 		
 		
 		String customerName;
@@ -46,7 +46,7 @@ public class Activator implements BundleActivator {
 		double deluxeRoomPrice = 0;
 		double luxuryRoomType = 0;
 		double roomPrice = 0;
-		ArrayList<HillCottageBill> list = new ArrayList<HillCottageBill>();
+		ArrayList<HotelBillInfo> list = new ArrayList<HotelBillInfo>();
 		
 		System.out.println("Hotel Booking Consumer Started!");
 		System.out.println();
@@ -155,7 +155,7 @@ public class Activator implements BundleActivator {
 						System.out.println();
 						
 						
-						HillCottageBill bill = new HillCottageBill(customerName,phoneNumber,hotelName,roomType,numberOfRooms,numberOfDays,roomPrice);
+						HotelBillInfo bill = new HotelBillInfo(customerName,phoneNumber,hotelName,roomType,numberOfRooms,numberOfDays,roomPrice);
 						list.add(bill);
 						System.out.print("Do you need to reserve more Rooms (Enter the related number):    1. Yes    2. No");
 						System.out.println("");
