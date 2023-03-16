@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Hill_Cottage_Hotel_Producer
-Bundle-SymbolicName: Hill_Cottage_Hotel_Producer
+Bundle-SymbolicName: Hotel_Booking_Producer
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: hotel_booking_producer.Activator
 Export-Package: hotel_booking_producer
