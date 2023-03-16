@@ -7,10 +7,10 @@ import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 
-import hill_cottage_hotel_producer.CustomerProfile;
-import hill_cottage_hotel_producer.HillCottageBill;
-import hill_cottage_hotel_producer.HillCottageHotelService;
-import hill_cottage_hotel_producer.HotelProfile;
+import hotel_booking_producer.CustomerProfile;
+import hotel_booking_producer.HillCottageBill;
+import hotel_booking_producer.HillCottageHotelService;
+import hotel_booking_producer.HotelProfile;
 
 public class Activator implements BundleActivator {
 
@@ -45,13 +45,14 @@ public class Activator implements BundleActivator {
 		double stdRoomPrice = 0;
 		double deluxeRoomPrice = 0;
 		double luxuryRoomType = 0;
+		double roomPrice = 0;
 		ArrayList<HillCottageBill> list = new ArrayList<HillCottageBill>();
 		
 		System.out.println("Hotel Booking Consumer Started!");
 		System.out.println();
 		System.out.println();
 		System.out.println("============================== Welcome to OceanTravel Agency ==============================");
-		System.out.println("                              \nMake your tour amazing with us\n                               ");
+		System.out.println("                              Make your tour amazing with us                               ");
 		
 		System.out.println("------------------------------ Welcome to Hotel Booking Service ------------------------------");
 		
@@ -69,18 +70,17 @@ public class Activator implements BundleActivator {
 		while(true) {
 			
 			
-			System.out.println("If you want to continue with this service or exit: ");
-			System.out.println("                                                   1.Continue");
-			System.out.println("                                                   2.Exit");
+			System.out.println("If you want to continue with this service or exit:     1.Continue    2.Exit");
+			System.out.println("");
 			System.out.print("Enter your option (Enter the related number): ");
 			int isContinue = sobj.nextInt();
 			System.out.println();
 				
 			if(isContinue == 1) {
-				
+				System.out.println("========================================================================");
 				System.out.println("Choose a Hotel to continue:");
-				System.out.println("                            1. Hill Cottage Hotel");
-				System.out.println("                            2. Shangri-La Hotel");
+				System.out.println("     1. Hill Cottage Hotel");
+				System.out.println("     2. Shangri-La Hotel");
 				System.out.println();
 				System.out.print("Enter the Hotel (Enter the number):");
 				hotel = sobj.nextInt();
@@ -129,6 +129,19 @@ public class Activator implements BundleActivator {
 						roomType = sobj.nextInt();
 						System.out.println();
 						
+						if(roomType == 1) {
+							
+							roomPrice = stdRoomPrice;
+							
+						}else if(roomType == 2){
+							
+							roomPrice = deluxeRoomPrice;
+							
+						}else if(roomType == 3) {
+							
+							roomPrice = luxuryRoomType;
+						}
+						
 						//Input the Number of rooms need
 						
 						System.out.print("Enter the number of rooms you need : ");
@@ -142,11 +155,10 @@ public class Activator implements BundleActivator {
 						System.out.println();
 						
 						
-						HillCottageBill bill = new HillCottageBill(customerName,phoneNumber,hotelName,roomType,numberOfRooms,numberOfDays);
+						HillCottageBill bill = new HillCottageBill(customerName,phoneNumber,hotelName,roomType,numberOfRooms,numberOfDays,roomPrice);
 						list.add(bill);
-						System.out.println("Do you need to reserve more Rooms:");
-						System.out.println("                                  1. Yes");
-						System.out.println("                                  2. No");
+						System.out.print("Do you need to reserve more Rooms (Enter the related number):    1. Yes    2. No");
+						System.out.println("");
 						int isNeed = sobj.nextInt();
 						System.out.println();
 						
@@ -165,10 +177,10 @@ public class Activator implements BundleActivator {
 				hCService.generateReport(list,cusObj,hotelDetail);
 				System.out.println();
 				System.out.println();
-				System.out.print("If you need to do a another booking (y or n): ");
-				String isBooking = sobj.nextLine();
+				System.out.print("If you need to do a another booking (Enter the related number) : 1. Yes    2. No");
+				int isBooking = sobj.nextInt();
 				
-				if(isBooking == "y" || isBooking == "Y") {
+				if(isBooking == 1) {
 					
 					continue;
 				}else {

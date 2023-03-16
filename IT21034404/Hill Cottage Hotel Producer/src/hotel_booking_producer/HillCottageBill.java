@@ -1,4 +1,4 @@
-package hill_cottage_hotel_producer;
+package hotel_booking_producer;
 
 public class HillCottageBill {
 	
@@ -8,15 +8,17 @@ public class HillCottageBill {
 	private int roomTypeNumber;
 	private int numberOfRooms;
 	private int numberOfDays;
+	private double roomPrice;
 	
 	public HillCottageBill(String customerName, String phoneNumber, String hotel, int roomTypeNumber, int numberOfRooms,
-			int numberOfDays) {
+			int numberOfDays,double roomPrice) {
 		this.customerName = customerName;
 		this.phoneNumber = phoneNumber;
 		this.hotel = hotel;
 		this.roomTypeNumber = roomTypeNumber;
 		this.numberOfRooms = numberOfRooms;
 		this.numberOfDays = numberOfDays;
+		this.roomPrice = roomPrice;
 	}
 
 	public String getCustomerName() {
@@ -43,19 +45,9 @@ public class HillCottageBill {
 		return numberOfDays;
 	}
 	
-	public double getRoomAmount() {
-		if (this.roomTypeNumber == 1) {
-			return 10000.00;
-			
-		}else if(this.roomTypeNumber == 2) {
-			return 30000.00;
-			
-		}else if(this.roomTypeNumber == 3) {
-			return 60000.00;
-			
-		}else {
-			return 0;
-		}
+	public double getRoomPrice() {
+		
+		return roomPrice;
 		
 	}
 	

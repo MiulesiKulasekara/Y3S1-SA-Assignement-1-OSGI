@@ -1,4 +1,4 @@
-package hill_cottage_hotel_producer;
+package hotel_booking_producer;
 
 import java.util.List;
 

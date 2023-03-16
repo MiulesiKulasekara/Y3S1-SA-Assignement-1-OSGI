@@ -3,8 +3,8 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Hill_Cottage_Hotel_Producer
 Bundle-SymbolicName: Hill_Cottage_Hotel_Producer
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: hill_cottage_hotel_producer.Activator
-Export-Package: hill_cottage_hotel_producer
+Bundle-Activator: hotel_booking_producer.Activator
+Export-Package: hotel_booking_producer
 Import-Package: org.osgi.framework;version="1.3.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-17
 
