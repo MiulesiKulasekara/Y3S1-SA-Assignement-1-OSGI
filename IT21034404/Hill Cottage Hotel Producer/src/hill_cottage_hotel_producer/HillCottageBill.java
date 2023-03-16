@@ -4,12 +4,12 @@ public class HillCottageBill {
 	
 	private String customerName;
 	private String phoneNumber;
-	private int hotel;
+	private String hotel;
 	private int roomTypeNumber;
 	private int numberOfRooms;
 	private int numberOfDays;
 	
-	public HillCottageBill(String customerName, String phoneNumber, int hotel, int roomTypeNumber, int numberOfRooms,
+	public HillCottageBill(String customerName, String phoneNumber, String hotel, int roomTypeNumber, int numberOfRooms,
 			int numberOfDays) {
 		this.customerName = customerName;
 		this.phoneNumber = phoneNumber;
@@ -27,7 +27,7 @@ public class HillCottageBill {
 		return phoneNumber;
 	}
 
-	public int getHotel() {
+	public String getHotel() {
 		return hotel;
 	}
 

@@ -7,8 +7,10 @@ import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 
+import hill_cottage_hotel_producer.CustomerProfile;
 import hill_cottage_hotel_producer.HillCottageBill;
 import hill_cottage_hotel_producer.HillCottageHotelService;
+import hill_cottage_hotel_producer.HotelProfile;
 
 public class Activator implements BundleActivator {
 
@@ -33,6 +35,9 @@ public class Activator implements BundleActivator {
 		
 		String customerName;
 		String phoneNumber;
+		String hotelName = null;
+		String hotelAddress = null;
+		String hotelTelephone = null;
 		int hotel;
 		int roomType;
 		int numberOfRooms;
@@ -58,6 +63,8 @@ public class Activator implements BundleActivator {
 		phoneNumber = sobj.nextLine();
 		System.out.println();
 		
+		CustomerProfile cusObj = new CustomerProfile(customerName,phoneNumber);
+		
 		//choosing a hotel
 		while(true) {
 			
@@ -73,21 +80,37 @@ public class Activator implements BundleActivator {
 				
 				System.out.println("Choose a Hotel to continue:");
 				System.out.println("                            1. Hill Cottage Hotel");
-				System.out.println("                            2. Shangrila Hotel");
+				System.out.println("                            2. Shangri-La Hotel");
 				System.out.println();
 				System.out.print("Enter the Hotel (Enter the number):");
 				hotel = sobj.nextInt();
 				System.out.println();
 				
-				//Choosing a room type
+				//Define Hotel name and Price
 				
 				if(hotel == 1) {
 					
 					stdRoomPrice = 10000.00;
 					deluxeRoomPrice = 20000.00;
 					luxuryRoomType= 30000.00;
+					hotelName = "Hill Cottage";
+					hotelAddress = "19, 23 Grand Hotel Rd, Nuwara Eliya 22200";
+					hotelTelephone = "0524 930 200";
 					
-					System.out.println("===================== Welcome to Hill Cottage Hotel =====================");
+					
+				}else if(hotel == 2) {
+					
+					stdRoomPrice = 15000.00;
+					deluxeRoomPrice = 25000.00;
+					luxuryRoomType= 40000.00;
+					hotelName = "Shangri-La";
+					hotelAddress = "2, 1 Colombo - Galle - Hambantota - Wellawaya Hwy, Colombo 00200";
+					hotelTelephone = "0117 888 288";
+				}
+				
+				//Choosing a room type
+					
+					System.out.println("===================== Welcome to "+hotelName+" Hotel =====================");
 					System.out.println();
 					
 					do {
@@ -119,7 +142,7 @@ public class Activator implements BundleActivator {
 						System.out.println();
 						
 						
-						HillCottageBill bill = new HillCottageBill(customerName,phoneNumber,hotel,roomType,numberOfRooms,numberOfDays);
+						HillCottageBill bill = new HillCottageBill(customerName,phoneNumber,hotelName,roomType,numberOfRooms,numberOfDays);
 						list.add(bill);
 						System.out.println("Do you need to reserve more Rooms:");
 						System.out.println("                                  1. Yes");
@@ -137,19 +160,9 @@ public class Activator implements BundleActivator {
 						
 					}while(true);
 					
-					
-					
-				}else if(hotel == 2) {
-					
-					stdRoomPrice = 10000.00;
-					deluxeRoomPrice = 20000.00;
-					luxuryRoomType= 30000.00;
-					
-				}
+				HotelProfile hotelDetail = new HotelProfile(hotelName,hotelAddress,hotelTelephone);
 				
-				
-				
-				hCService.generateReport(list);
+				hCService.generateReport(list,cusObj,hotelDetail);
 				System.out.println();
 				System.out.println();
 				System.out.print("If you need to do a another booking (y or n): ");

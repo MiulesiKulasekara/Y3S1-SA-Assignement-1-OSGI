@@ -11,13 +11,22 @@ public class HillCottageHotelServiceImp implements HillCottageHotelService{
 	}
 
 	@Override
-	public void generateReport(List<HillCottageBill> obj) {
+	public void generateReport(List<HillCottageBill> obj, CustomerProfile cObj, HotelProfile hObj) {
 		
 		double totalAmount = 0;
 		double discount = 0;
 		double serviceCharge = 500.00;
 		
-		System.out.println("======================= Hill Cottage Hotel Bill =======================");
+		System.out.println("======================= "+hObj.getHotelName()+" Hotel Bill =======================");
+		System.out.println();
+		System.out.println("Address : "+hObj.getHotelAddress());
+		System.out.println("Phone   : "+hObj.getHotelPhone());
+		System.out.println();
+		System.out.println("===================================================================================");
+		System.out.println();
+		System.out.println("Customer Name : "+cObj.getCustomerName());
+		System.out.println();
+		System.out.println("===================================================================================");
 		
 		System.out.format("%-18s %-10s %10s %25s %15s","Room Type","Price","Number of Rooms","Number of days of stay","Amount");
 		System.out.println();
