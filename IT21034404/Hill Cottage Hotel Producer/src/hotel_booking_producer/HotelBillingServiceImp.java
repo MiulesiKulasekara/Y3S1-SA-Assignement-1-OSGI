@@ -2,7 +2,11 @@ package hotel_booking_producer;
 
 import java.util.List;
 
+
+
 public class HotelBillingServiceImp implements HotelBillingService{
+	
+	
 
 	@Override
 	public double calcTotalAmount(double roomAmount, int numberOfRooms, int numberOfDays) {
@@ -12,6 +16,7 @@ public class HotelBillingServiceImp implements HotelBillingService{
 
 	@Override
 	public void generateReport(List<HotelBillInfo> obj, CustomerProfile cObj, HotelProfile hObj) {
+		
 		
 		double totalAmount = 0;
 		double discount = 0;
@@ -53,6 +58,7 @@ public class HotelBillingServiceImp implements HotelBillingService{
 		System.out.format("%-18s %-10s %10s %25s %15s","","","","","==================================");
 		System.out.println();
 		System.out.format("%-18s %-10s %10s %25s %15s","","","","","Total           =      "+((totalAmount+serviceCharge)-discount));
+		
 		
 		
 	}

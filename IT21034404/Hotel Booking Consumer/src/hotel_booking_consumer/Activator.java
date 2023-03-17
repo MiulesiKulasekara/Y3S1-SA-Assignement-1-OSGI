@@ -11,6 +11,7 @@ import hotel_booking_producer.CustomerProfile;
 import hotel_booking_producer.HotelBillInfo;
 import hotel_booking_producer.HotelBillingService;
 import hotel_booking_producer.HotelProfile;
+//import loyaltyprogramproducer.LoyaltyProgramService;
 
 public class Activator implements BundleActivator {
 
@@ -21,6 +22,7 @@ public class Activator implements BundleActivator {
 	
 	
 	ServiceReference reference;
+//	ServiceReference reference2;
 	
 	
 
@@ -30,7 +32,9 @@ public class Activator implements BundleActivator {
 		System.out.println("Consumer Started!!!!!!!!!");
 		
 		reference = context.getServiceReference(HotelBillingService.class.getName());
+//		reference2 = context.getServiceReference(LoyaltyProgramService.class.getName());
 		HotelBillingService hCService = (HotelBillingService)context.getService(reference);
+//		LoyaltyProgramService lpService = (LoyaltyProgramService)context.getService(reference2);
 		
 		
 		String customerName;
@@ -46,6 +50,9 @@ public class Activator implements BundleActivator {
 		double deluxeRoomPrice = 0;
 		double luxuryRoomType = 0;
 		double roomPrice = 0;
+		int royaltyNumber = 0;
+		boolean isRoyalty = false;
+		int isContinue;
 		ArrayList<HotelBillInfo> list = new ArrayList<HotelBillInfo>();
 		
 		System.out.println("Hotel Booking Consumer Started!");
@@ -64,27 +71,75 @@ public class Activator implements BundleActivator {
 		phoneNumber = sobj.nextLine();
 		System.out.println();
 		
-		CustomerProfile cusObj = new CustomerProfile(customerName,phoneNumber);
+		
+//		while(true) {
+//			System.out.print("Enter your 6 digit royalty number : ");
+//			royaltyNumber = sobj.nextInt();
+//			if(lpService.checkLoyaltyIdValidity(royaltyNumber)) {
+//				System.out.println("Your Royalty Number is Valid!");
+//				break;
+//			}else {
+//				System.out.println("The Royalty number is invalid do you need to try again : 1. Yes    2. No");
+//				int need = sobj.nextInt();
+//				if(need == 1) {
+//					continue;
+//				}else {
+//					break;
+//				}
+//			}
+//			
+//		};
+//			
+		CustomerProfile cusObj = new CustomerProfile(customerName,phoneNumber,isRoyalty);
 		
 		//choosing a hotel
 		while(true) {
 			
+			while(true) {
+				
+				System.out.println("If you want to continue with this service or exit:     1.Continue    2.Exit");
+				System.out.println("");
+				System.out.print("Enter your option (Enter the related number): ");
+				isContinue = sobj.nextInt();
+				System.out.println();
+				
+				if(isContinue == 1 || isContinue == 2) {
+					break;
+				}else {
+					System.out.println("!!!!!Invalid Number!!!!! ----- Re enter the correct code ");
+					continue;
+				}
+			}
 			
-			System.out.println("If you want to continue with this service or exit:     1.Continue    2.Exit");
-			System.out.println("");
-			System.out.print("Enter your option (Enter the related number): ");
-			int isContinue = sobj.nextInt();
-			System.out.println();
 				
 			if(isContinue == 1) {
-				System.out.println("========================================================================");
-				System.out.println("Choose a Hotel to continue:");
-				System.out.println("     1. Hill Cottage Hotel");
-				System.out.println("     2. Shangri-La Hotel");
-				System.out.println();
-				System.out.print("Enter the Hotel (Enter the number):");
-				hotel = sobj.nextInt();
-				System.out.println();
+//				System.out.println("========================================================================");
+//				System.out.println("Choose a Hotel to continue:");
+//				System.out.println("     1. Hill Cottage Hotel");
+//				System.out.println("     2. Shangri-La Hotel");
+//				System.out.println();
+//				System.out.print("Enter the Hotel (Enter the number):");
+//				hotel = sobj.nextInt();
+//				System.out.println();
+				
+				while(true) {
+					
+					System.out.println("========================================================================");
+					System.out.println("Choose a Hotel to continue:");
+					System.out.println("     1. Hill Cottage Hotel");
+					System.out.println("     2. Shangri-La Hotel");
+					System.out.println();
+					System.out.print("Enter the Hotel (Enter the number):");
+					hotel = sobj.nextInt();
+					System.out.println();
+					
+					if(hotel == 1 || hotel == 2) {
+						break;
+					}else {
+						System.out.println("!!!!!Invalid Number!!!!! ----- Re enter the correct code ");
+						continue;
+					}
+				}
 				
 				//Define Hotel name and Price
 				
@@ -115,19 +170,45 @@ public class Activator implements BundleActivator {
 					
 					do {
 						
-						System.out.println("Choose a Room Type : ");
-						System.out.format("%-18s %8s","Room Type","Unit Price");
-						System.out.println();
-						System.out.format("%-18s %8s","1. Standered Room","Rs. "+stdRoomPrice);
-						System.out.println();
-						System.out.format("%-18s %8s","2. Deluxe Room","Rs. "+deluxeRoomPrice);
-						System.out.println();
-						System.out.format("%-18s %8s","3. Luxury Room","Rs. "+luxuryRoomType);
-						System.out.println();
-						System.out.println();
-						System.out.print("Enter the Room Type (Enter the number):");
-						roomType = sobj.nextInt();
-						System.out.println();
+//						System.out.println("Choose a Room Type : ");
+//						System.out.format("%-18s %8s","Room Type","Unit Price");
+//						System.out.println();
+//						System.out.format("%-18s %8s","1. Standered Room","Rs. "+stdRoomPrice);
+//						System.out.println();
+//						System.out.format("%-18s %8s","2. Deluxe Room","Rs. "+deluxeRoomPrice);
+//						System.out.println();
+//						System.out.format("%-18s %8s","3. Luxury Room","Rs. "+luxuryRoomType);
+//						System.out.println();
+//						System.out.println();
+//						System.out.print("Enter the Room Type (Enter the number):");
+//						roomType = sobj.nextInt();
+//						System.out.println();
+						
+						
+						while(true) {
+							
+							System.out.println("Choose a Room Type : ");
+							System.out.format("%-18s %8s","Room Type","Unit Price");
+							System.out.println();
+							System.out.format("%-18s %8s","1. Standered Room","Rs. "+stdRoomPrice);
+							System.out.println();
+							System.out.format("%-18s %8s","2. Deluxe Room","Rs. "+deluxeRoomPrice);
+							System.out.println();
+							System.out.format("%-18s %8s","3. Luxury Room","Rs. "+luxuryRoomType);
+							System.out.println();
+							System.out.println();
+							System.out.print("Enter the Room Type (Enter the number):");
+							roomType = sobj.nextInt();
+							System.out.println();
+							
+							if(roomType == 1 || roomType == 2 || roomType == 3) {
+								break;
+							}else {
+								System.out.println("!!!!!Invalid Number!!!!! ----- Re enter the correct code ");
+								continue;
+							}
+							
+						}
 						
 						if(roomType == 1) {
 							
@@ -147,6 +228,7 @@ public class Activator implements BundleActivator {
 						System.out.print("Enter the number of rooms you need : ");
 						numberOfRooms = sobj.nextInt();	
 						System.out.println();
+						
 						
 						
 						//How many days you stay
@@ -181,8 +263,8 @@ public class Activator implements BundleActivator {
 				int isBooking = sobj.nextInt();
 				
 				if(isBooking == 1) {
-					
 					continue;
+					
 				}else {
 					break;
 				}
