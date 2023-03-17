@@ -8,9 +8,10 @@ public class TransportationBill {
 	private int noOfDays;
 	private int vehicle;
 	public int driver;
+	private boolean isLoyalty;
 
 	public TransportationBill(String customerName, String phoneNumber, int passengers, int noOfDays, int vehicle,
-			int driver) {
+			int driver,boolean isLoyalty) {
 		super();
 		this.customerName = customerName;
 		this.phoneNumber = phoneNumber;
@@ -18,6 +19,7 @@ public class TransportationBill {
 		this.noOfDays = noOfDays;
 		this.vehicle = vehicle;
 		this.driver = driver;
+		this.isLoyalty = isLoyalty;
 	}
 
 	public String getCustomerName() {
@@ -66,6 +68,13 @@ public class TransportationBill {
 
 	public void setDriver(int driver) {
 		this.driver = driver;
+	}
+	public boolean getIsLoyalty() {
+		return isLoyalty;
+	}
+
+	public void setIsLoyalty(boolean isLoyalty) {
+		this.isLoyalty = isLoyalty;
 	}
 
 }

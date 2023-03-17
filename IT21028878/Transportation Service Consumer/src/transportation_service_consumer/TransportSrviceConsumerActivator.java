@@ -34,6 +34,10 @@ public class TransportSrviceConsumerActivator implements BundleActivator {
 		int vehicle = 0;
 		int driver = 0;
 		int decision = 0;
+		int selectLoylty = 0;
+		boolean isRoyalty = false;
+		int loyaltyNumber= 0;
+		
 		ArrayList<TransportationBill> list = new ArrayList<TransportationBill>();
 
 		Scanner myObj = new Scanner(System.in);
@@ -45,6 +49,45 @@ public class TransportSrviceConsumerActivator implements BundleActivator {
 
 		System.out.print("Phone number:");
 		phoneNumber = myObj.nextLine();
+
+		/////////////////////////////////////////////////////////////////////////////////
+
+		do {
+
+			System.out.println("Are you a Loyalty Member: 1.Yes 2.No");
+
+			selectLoylty = myObj.nextInt();
+			if (selectLoylty == 1) {
+
+				while (true) {
+					System.out.print("Enter your 6 digit royalty number : ");
+					loyaltyNumber = myObj.nextInt();
+					if (servicepublish.checkLoyaltyCustomer(loyaltyNumber)) {
+						System.out.println("Your Royalty Number is Valid!");
+						isRoyalty = true;
+						break;
+					} else {
+						System.out.println("The Royalty number is invalid do you need to try again : 1. Yes    2. No");
+						int need = myObj.nextInt();
+						if (need == 1) {
+							continue;
+						} else {
+							break;
+						}
+					}
+
+				}
+				;
+
+				break;
+			} else if (selectLoylty == 2) {
+
+				break;
+			}
+
+		} while (selectLoylty != 1 || selectLoylty != 2);
+
+		/////////////////////////////////////////////////////////////////////////////////
 
 		while (true) {// another existing order block => add another vehicle to existing order
 
@@ -175,7 +218,7 @@ public class TransportSrviceConsumerActivator implements BundleActivator {
 
 			// calculate bill
 			TransportationBill bill = new TransportationBill(customerName, phoneNumber, passengers, noOfDays, vehicle,
-					driver);
+					driver,isRoyalty);
 			list.add(bill);
 
 			// display bill

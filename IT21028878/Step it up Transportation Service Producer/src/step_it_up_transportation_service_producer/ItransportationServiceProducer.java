@@ -13,6 +13,7 @@ public interface ItransportationServiceProducer {
 	
 	public double transportationBillCalculator(int noOfDays, int vehicle, int driver);
 	public void displayBill(List<TransportationBill> obj);
+	public boolean checkLoyaltyCustomer(int id);
 
 
 }

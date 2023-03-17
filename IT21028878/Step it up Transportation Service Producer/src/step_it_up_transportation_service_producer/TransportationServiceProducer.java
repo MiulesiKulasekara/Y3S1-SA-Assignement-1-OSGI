@@ -2,7 +2,28 @@ package step_it_up_transportation_service_producer;
 
 import java.util.List;
 
+import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.framework.ServiceReference;
+
+import loyaltyprogramproducer.LoyaltyProgramService;
+
 public class TransportationServiceProducer implements ItransportationServiceProducer {
+
+	/////////////////////////////////////////////////////////////////////////////////////////////////
+	Bundle bundle = FrameworkUtil.getBundle(this.getClass());
+	BundleContext context = FrameworkUtil.getBundle(this.getClass()).getBundleContext();
+
+	ServiceReference reference2 = context.getServiceReference(LoyaltyProgramService.class.getName());
+	LoyaltyProgramService lpService = (LoyaltyProgramService) context.getService(reference2);
+	/////////////////////////////////////////////////////////////////////////////////////////////////
+
+	@Override
+	public boolean checkLoyaltyCustomer(int id) {
+		boolean isTrue = lpService.checkLoyaltyIdValidity(id);
+		return isTrue;
+	}
 
 	@Override
 	public double transportationBillCalculator(int noOfDays, int vehicle, int driver) {
@@ -96,11 +117,14 @@ public class TransportationServiceProducer implements ItransportationServiceProd
 		double totalBill = 0;
 		String cus_name = null;
 		String ph_num = null;
+		boolean loy_num = false;
+		double loy_dis = 0; 
 
 		// first
 		for (TransportationBill data : obj) {
 			cus_name = data.getCustomerName();
 			ph_num = data.getPhoneNumber();
+			loy_num = data.getIsLoyalty();
 		}
 
 		System.out.println("======================= STEP IT UP Bill =======================");
@@ -122,9 +146,15 @@ public class TransportationServiceProducer implements ItransportationServiceProd
 			totalBill += amount;
 
 		}
+		
+		if(loy_num) {
+			loy_dis = lpService.getLoyaltyDiscount(totalBill);
+		}
 
 		System.out.println("=====================================================================");
-		System.out.format("Total = " + totalBill);
+		System.out.format("Loyalty discount = " + loy_dis);
+		System.out.println("");
+		System.out.format("Total = " + (totalBill-loy_dis));
 		System.out.println("");
 		System.out.println("");
 
