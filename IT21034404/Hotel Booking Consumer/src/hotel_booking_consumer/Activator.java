@@ -11,7 +11,7 @@ import hotel_booking_producer.CustomerProfile;
 import hotel_booking_producer.HotelBillInfo;
 import hotel_booking_producer.HotelBillingService;
 import hotel_booking_producer.HotelProfile;
-//import loyaltyprogramproducer.LoyaltyProgramService;
+
 
 public class Activator implements BundleActivator {
 
@@ -22,7 +22,6 @@ public class Activator implements BundleActivator {
 	
 	
 	ServiceReference reference;
-//	ServiceReference reference2;
 	
 	
 
@@ -32,9 +31,8 @@ public class Activator implements BundleActivator {
 		System.out.println("Consumer Started!!!!!!!!!");
 		
 		reference = context.getServiceReference(HotelBillingService.class.getName());
-//		reference2 = context.getServiceReference(LoyaltyProgramService.class.getName());
 		HotelBillingService hCService = (HotelBillingService)context.getService(reference);
-//		LoyaltyProgramService lpService = (LoyaltyProgramService)context.getService(reference2);
+		
 		
 		
 		String customerName;
@@ -50,17 +48,19 @@ public class Activator implements BundleActivator {
 		double deluxeRoomPrice = 0;
 		double luxuryRoomType = 0;
 		double roomPrice = 0;
-		int royaltyNumber = 0;
+		int loyaltyNumber = 0;
 		boolean isRoyalty = false;
 		int isContinue;
+		int selectLoylty = 0;
 		ArrayList<HotelBillInfo> list = new ArrayList<HotelBillInfo>();
 		
 		System.out.println("Hotel Booking Consumer Started!");
 		System.out.println();
 		System.out.println();
 		System.out.println("============================== Welcome to OceanTravel Agency ==============================");
+		System.out.println();
 		System.out.println("                              Make your tour amazing with us                               ");
-		
+		System.out.println();
 		System.out.println("------------------------------ Welcome to Hotel Booking Service ------------------------------");
 		
 		//Input name and mobile number
@@ -71,24 +71,48 @@ public class Activator implements BundleActivator {
 		phoneNumber = sobj.nextLine();
 		System.out.println();
 		
-		
 //		while(true) {
-//			System.out.print("Enter your 6 digit royalty number : ");
-//			royaltyNumber = sobj.nextInt();
-//			if(lpService.checkLoyaltyIdValidity(royaltyNumber)) {
-//				System.out.println("Your Royalty Number is Valid!");
-//				break;
-//			}else {
-//				System.out.println("The Royalty number is invalid do you need to try again : 1. Yes    2. No");
-//				int need = sobj.nextInt();
-//				if(need == 1) {
-//					continue;
-//				}else {
-//					break;
-//				}
-//			}
+//			System.out.println("Are you a Loyalty Member: 1.Yes 2.No");
+//			selectLoylty = sobj.nextInt();
+//			if()
 //			
-//		};
+//		}
+		
+		do {
+			
+			System.out.println("Are you a Loyalty Member: 1.Yes 2.No");
+			
+			selectLoylty = sobj.nextInt();
+			if(selectLoylty == 1) {
+				
+				while(true) {
+					System.out.print("Enter your 6 digit royalty number : ");
+					loyaltyNumber = sobj.nextInt();
+					if(hCService.checkLoyaltyMember(loyaltyNumber)) {
+						System.out.println("Your Royalty Number is Valid!");
+						isRoyalty = true;
+						break;
+					}else {
+						System.out.println("The Royalty number is invalid do you need to try again : 1. Yes    2. No");
+						int need = sobj.nextInt();
+						if(need == 1) {
+							continue;
+						}else {
+							break;
+						}
+					}
+					
+				};
+				
+				break;
+			}else if(selectLoylty == 2) {
+				
+				break;
+			}
+			
+		}while(selectLoylty != 1 || selectLoylty !=2);
+			
+		
 //			
 		CustomerProfile cusObj = new CustomerProfile(customerName,phoneNumber,isRoyalty);
 		
@@ -97,6 +121,9 @@ public class Activator implements BundleActivator {
 			
 			while(true) {
 				
+				System.out.println("");
+				System.out.println("------------------------------------------------------------------------");
+				System.out.println("");
 				System.out.println("If you want to continue with this service or exit:     1.Continue    2.Exit");
 				System.out.println("");
 				System.out.print("Enter your option (Enter the related number): ");
@@ -239,8 +266,8 @@ public class Activator implements BundleActivator {
 						
 						HotelBillInfo bill = new HotelBillInfo(customerName,phoneNumber,hotelName,roomType,numberOfRooms,numberOfDays,roomPrice);
 						list.add(bill);
-						System.out.print("Do you need to reserve more Rooms (Enter the related number):    1. Yes    2. No");
-						System.out.println("");
+						System.out.println("Do you need to reserve more Rooms :    1. Yes    2. No");
+						System.out.print("Choose your option (Enter the related number) :");
 						int isNeed = sobj.nextInt();
 						System.out.println();
 						
@@ -259,13 +286,16 @@ public class Activator implements BundleActivator {
 				hCService.generateReport(list,cusObj,hotelDetail);
 				System.out.println();
 				System.out.println();
-				System.out.print("If you need to do a another booking (Enter the related number) : 1. Yes    2. No");
+				System.out.println("If you need to do a another booking: 1. Yes    2. No");
+				System.out.print("Choose your option (Enter the related number) :");
 				int isBooking = sobj.nextInt();
 				
 				if(isBooking == 1) {
 					continue;
 					
 				}else {
+					System.out.println("-----------------Room Booking Service is Closed---------------");
+					System.out.println("Thank you fro join with Us");
 					break;
 				}
 				

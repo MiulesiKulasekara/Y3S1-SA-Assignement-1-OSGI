@@ -2,22 +2,22 @@ package loyaltyprogramproducer;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.ServiceRegistration;
+
 
 public class LoyaltyActivator implements BundleActivator {
+	
+	ServiceRegistration serviceRegistration;
 
-	private static BundleContext context;
-
-	static BundleContext getContext() {
-		return context;
-	}
-
-	public void start(BundleContext bundleContext) throws Exception {
+	public void start(BundleContext context) throws Exception {
 		System.out.println("loyalty service started!");
-		LoyaltyActivator.context = bundleContext;
+		LoyaltyProgramService hillCottageHotel = new LoyaltyProgramServiceImp();
+		
+		serviceRegistration = context.registerService(LoyaltyProgramService.class.getName(), hillCottageHotel, null);
 	}
 
-	public void stop(BundleContext bundleContext) throws Exception {
-		LoyaltyActivator.context = null;
+	public void stop(BundleContext context) throws Exception {
+		
 	}
 
 }
