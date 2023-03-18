@@ -1,7 +1,7 @@
 package osgi_servicesubscriber;
 
-import com.mtit.service.ServicePublish;
-import com.mtit.service.ServicePublishImpl;
+import com.mtit.service2.ServicePublish;
+import com.mtit.service2.ServicePublishImpl;
 
 import java.util.Scanner;
 
@@ -92,7 +92,7 @@ public class ServiceActivator implements BundleActivator {
 		System.out.println("Travel Style : "+style);
 		System.out.println("Activity : "+activity);
 		
-		ServicePublishImpl obj = new ServicePublishImpl();
+		ServicePublish obj = new ServicePublishImpl();
 		
 		double total;
 		

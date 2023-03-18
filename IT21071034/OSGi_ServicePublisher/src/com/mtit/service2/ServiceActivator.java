@@ -1,4 +1,4 @@
-package com.mtit.service;
+package com.mtit.service2;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;

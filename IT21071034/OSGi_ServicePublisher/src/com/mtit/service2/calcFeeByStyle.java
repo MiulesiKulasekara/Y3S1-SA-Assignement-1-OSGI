@@ -1,4 +1,4 @@
-package com.mtit.service;
+package com.mtit.service2;
 
 public class calcFeeByStyle {
 	
