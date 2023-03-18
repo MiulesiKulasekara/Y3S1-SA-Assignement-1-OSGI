@@ -17,6 +17,10 @@ public class flightsubscriberActivator implements BundleActivator {
 
 		System.out.println("------start subscriber service------");
 		
+		serviceReference=context.getServiceReference(filghtServicePublish.class.getName());
+		filghtServicePublish servicepublish=(filghtServicePublish)context.getService(serviceReference);
+		flightServicePublishIMPL obj=new flightServicePublishIMPL();
+		
 		Scanner sc = new Scanner(System.in);
 		
 		
@@ -59,7 +63,7 @@ public class flightsubscriberActivator implements BundleActivator {
 	        if(enteredDate.isBefore(currentDate)||enteredDate.isEqual(currentDate)) {
 	        	System.out.println(enteredDate +"  this date cannot be entered due to it being a previous or it's today");
 	        }else {
-	        	flight_Fee f_fee=new flight_Fee();
+	        	
 			
 				System.out.println("------------------travel destinations/stareting plase------------------");
 				System.out.println("1.India");
@@ -68,7 +72,7 @@ public class flightsubscriberActivator implements BundleActivator {
 				System.out.println("4.France");
 				System.out.println("5.Itali");
 				System.out.println("---------------------------------------");
-				f_fee.orintorice();
+				obj.prices();
 				System.out.println("==============================================");
 				
 				System.out.println("---------------------------------------");
@@ -81,7 +85,7 @@ public class flightsubscriberActivator implements BundleActivator {
 				System.out.println("--------------------Classes of the Flight----------------------------");
 				System.out.println("f. first class wiil add extra RS 75000");
 				System.out.println("b. business class wiil add extra RS 35000");
-				System.out.println("e. economi class wiil add extra RS 10000");
+				System.out.println("e. economi class wiil add extra ");
 				System.out.println("Enter the preferd class");
 				flightClass=sc.next();
 				System.out.println("==============================================");
@@ -100,11 +104,9 @@ public class flightsubscriberActivator implements BundleActivator {
 				
 				
 				
-				total_fee=f_fee.clac_flight_fee(destNum, start,flightClass,seatType);
+				total_fee=obj.clac_flight_fee(destNum, start,flightClass,seatType);
 				
-				calLaggageFee w_fee=new calLaggageFee();
-				
-				total_fee=total_fee+w_fee.cal_fee_by_fee(bagKg);
+				total_fee=total_fee+obj.cal_fee_by_weight(bagKg);
 				
 				System.out.println("---------------------------------------");
 				System.out.println("Name : "+fname+" "+lname);
@@ -122,8 +124,6 @@ public class flightsubscriberActivator implements BundleActivator {
 	        
 		}while(yn.equals("y")||yn.equals("Y"));
 		
-		serviceReference=context.getServiceReference(filghtServicePublish.class.getName());
-		filghtServicePublish servicepublish=(filghtServicePublish)context.getService(serviceReference);
 		System.out.println(servicepublish.flightPublishService());
 	}
 
