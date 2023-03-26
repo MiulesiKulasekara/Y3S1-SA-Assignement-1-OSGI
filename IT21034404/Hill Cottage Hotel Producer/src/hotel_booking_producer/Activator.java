@@ -18,6 +18,7 @@ public class Activator implements BundleActivator {
 
 	public void stop(BundleContext context) throws Exception {
 		System.out.println("Hill Cottage Hotel Producer stoped!!!!!!!!");
+		serviceRegistration.unregister();
 	}
 
 }

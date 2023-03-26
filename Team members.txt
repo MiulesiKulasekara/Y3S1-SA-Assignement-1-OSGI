@@ -4,3 +4,6 @@ CSSE_WE_05
 	IT21034404	Nipun P.G.I
 	IT21039140 	Dewasurendra S.V
 	IT21071034	Wanniarachchi T.T
+
+	Loyalty numbers
+	854601,290813,760924,495367,128745

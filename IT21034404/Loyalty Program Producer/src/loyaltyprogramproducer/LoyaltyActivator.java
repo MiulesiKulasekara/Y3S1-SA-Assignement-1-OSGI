@@ -17,6 +17,8 @@ public class LoyaltyActivator implements BundleActivator {
 	}
 
 	public void stop(BundleContext context) throws Exception {
+		System.out.println("Loyalty program Stoped!!!");
+		serviceRegistration.unregister();
 		
 	}
 
