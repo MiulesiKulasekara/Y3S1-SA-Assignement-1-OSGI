@@ -21,8 +21,9 @@ IT21071034	Wanniarachchi T.T</br>
 <p>This unit will provide customers with the ability to plan their travel budget and calculate the estimated cost of their trip based on their preferred destinations, travel style and activities. Here are some functionalities that the travel budget planning unit has destination selection, travel style selection, activity selection and budget calculation.</p></br>
 
 <b>Flight Booking Service:</b>  
-<p>Fight booking service allows customers to enter personal data and validate them. The system confirms the date, and requests the departure and arrival times, chosen class, luggage size, and selected seat. Using entered information the cost will be calculated.
-Those four scenarios are developed by using OSGi framework. The below table represent services and subscribers according to the OSGi framework.</p></br>
+<p>Fight booking service allows customers to enter personal data and validate them. The system confirms the date, and requests the departure and arrival times, chosen class, luggage size, and selected seat. Using entered information the cost will be calculated.</p></br>
+
+<p>Those four scenarios are developed by using OSGi framework. The below table represent services and subscribers according to the OSGi framework.</p></br>
 
 <table>
   <thead>
